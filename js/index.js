@@ -1,6 +1,7 @@
 import { data } from "./data.js";
 const tbody = document.getElementById("tbody");
 const cars = document.getElementById("cars");
+const searchEl = document.getElementById("search");
 const filter = document.getElementById("filter-status");
 
 function createRows(data) {
@@ -68,3 +69,18 @@ window.onload = function (params) {
     createRows(data);
   }
 };
+
+searchEl.addEventListener("input", function () {
+  let searchInput = searchEl.value.toLowerCase();
+  let items = document.getElementsByTagName("td");
+
+  for (let i = 0; i < items.length; i++) {
+    let itemInnerText = items[i].innerText.toLowerCase();
+
+    if (itemInnerText.includes(searchInput)) {
+      items[i].style.display = "block";
+    } else {
+      items[i].style.display = "none";
+    }
+  }
+});

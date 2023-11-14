@@ -40,3 +40,9 @@ select {
   margin-bottom: 20px;
   padding: 10px;
 }
+
+input {
+  width: 20%;
+  margin-bottom: 20px;
+  padding: 10px;
+}
