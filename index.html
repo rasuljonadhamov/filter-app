@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles/style.css" />
+    <title>Car table</title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <form>
+        <select name="cars" id="cars">
+          <option value="all">All cars</option>
+          <option value="Damas">Damas</option>
+          <option value="Spark">Spark</option>
+          <option value="Matiz">Matiz</option>
+          <option value="Tico">Tico</option>
+        </select>
+
+        <select name="status" id="filter-status">
+          <option disabled selected value="">Holatini tanlang</option>
+          <option value="active">Sotilmagan</option>
+          <option value="inactive">Sotilgan</option>
+        </select>
+      </form>
+      <table>
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Nomi</th>
+            <th>Yili</th>
+            <th>Rangi</th>
+            <th>Narxi</th>
+            <th>Holati</th>
+          </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
+
+    <script src="./js/index.js" type="module"></script>
+  </body>
+</html>
