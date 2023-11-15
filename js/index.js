@@ -5,6 +5,7 @@ const searchEl = document.getElementById("search");
 const filter = document.getElementById("filter-status");
 const colorfilter = document.getElementById("filter-color");
 const yearfilter = document.getElementById("filter-year");
+const pricefilter = document.getElementById("filter-price");
 
 function createRows(data) {
   let lists = "";
@@ -64,15 +65,27 @@ yearfilter.addEventListener("change", function () {
     if (yearSelected == 2010) {
       return el.year < 2010;
     } else if (yearSelected == 2020) {
-      return el.year > 2010 && el.year < 2020;
+      return el.year > 2009 && el.year < 2020;
     } else {
-      return el.year > 2020;
+      return el.year > 2019;
     }
   });
   createRows(yearsCarVal);
 });
 
-// 1. narx oraligi
+pricefilter.addEventListener("change", function () {
+  let priceSelected = Number(this.value);
+  let priceCarVal = data.filter((el) => {
+    if (priceSelected == 4000) {
+      return el.price < 3900;
+    } else if (priceSelected == 5000) {
+      return el.price > 3900 && el.price < 5000;
+    } else {
+      return el.price > 4900;
+    }
+  });
+  createRows(priceCarVal);
+});
 
 cars.addEventListener("change", function () {
   let selectedCar = this.value;
