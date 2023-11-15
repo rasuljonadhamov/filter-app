@@ -3,6 +3,8 @@ const tbody = document.getElementById("tbody");
 const cars = document.getElementById("cars");
 const searchEl = document.getElementById("search");
 const filter = document.getElementById("filter-status");
+const colorfilter = document.getElementById("filter-color");
+const yearfilter = document.getElementById("filter-year");
 
 function createRows(data) {
   let lists = "";
@@ -48,9 +50,29 @@ filter.addEventListener("change", function () {
   createRows(cars);
 });
 
+colorfilter.addEventListener("change", function () {
+  const colorSelected = this.value;
+  let colors = data.filter((el) => {
+    return el.color == colorSelected;
+  });
+  createRows(colors);
+});
+
+yearfilter.addEventListener("change", function () {
+  let yearSelected = Number(this.value);
+  let yearsCarVal = data.filter((el) => {
+    if (yearSelected == 2010) {
+      return el.year < 2010;
+    } else if (yearSelected == 2020) {
+      return el.year > 2010 && el.year < 2020;
+    } else {
+      return el.year > 2020;
+    }
+  });
+  createRows(yearsCarVal);
+});
+
 // 1. narx oraligi
-// 2. yillar boyicha
-// 3. rangi
 
 cars.addEventListener("change", function () {
   let selectedCar = this.value;
