@@ -12,6 +12,8 @@ const yearInput = document.getElementById("year");
 const priceInput = document.getElementById("price");
 const colorInput = document.getElementById("color");
 const formInput = document.querySelector(".createForm");
+const deleteBtns = document.querySelectorAll(".delete");
+const updateBtns = document.querySelectorAll(".update");
 
 function createRows(data) {
   let lists = "";
