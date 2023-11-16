@@ -64,3 +64,13 @@ input {
   cursor: pointer;
   padding: 10px;
 }
+
+.delete {
+  color: red;
+  cursor: pointer;
+}
+
+.update {
+  color: blue;
+  cursor: pointer;
+}

@@ -1,4 +1,4 @@
-import { data } from "./data.js";
+// import { data } from "./data.js";
 const tbody = document.getElementById("tbody");
 const cars = document.getElementById("cars");
 const searchEl = document.getElementById("search");
@@ -11,6 +11,7 @@ const nameInput = document.getElementById("name");
 const yearInput = document.getElementById("year");
 const priceInput = document.getElementById("price");
 const colorInput = document.getElementById("color");
+const formInput = document.querySelector(".createForm");
 
 function createRows(data) {
   let lists = "";
@@ -40,6 +41,10 @@ function createRows(data) {
                     <td>${color}</td>
                     <td>${price}</td>
                     <td>${status}</td>
+                    <td>
+                      <span class="delete">Delete</span>
+                      <span class="update">Update</span>
+                    </td>
                </tr>
           `;
     lists += tr;
@@ -147,12 +152,15 @@ cars.addEventListener("change", function () {
     createRows(data);
   }
 });
+document.addEventListener("DOMContentLoaded", function () {
+  let data = localStorage.getItem("cars")
+    ? JSON.parse(localStorage.getItem("cars"))
+    : [];
 
-window.onload = function () {
   if (data.length) {
     createRows(data);
   }
-};
+});
 
 searchEl.addEventListener("input", function () {
   let searchInput = searchEl.value.toLowerCase();
@@ -174,4 +182,20 @@ btn &&
     e.preventDefault();
 
     validate();
+    let data = [];
+
+    let car = {
+      id: data.length + 1,
+      name: nameInput.value,
+      year: yearInput.value,
+      color: colorInput.value,
+      price: priceInput.value,
+      status: "active",
+    };
+
+    data.push(car);
+
+    localStorage.setItem("cars", JSON.stringify(data));
+    formInput.reset();
+    createRows(data);
   });
