@@ -6,6 +6,11 @@ const filter = document.getElementById("filter-status");
 const colorfilter = document.getElementById("filter-color");
 const yearfilter = document.getElementById("filter-year");
 const pricefilter = document.getElementById("filter-price");
+const btn = document.getElementById("btn");
+const nameInput = document.getElementById("name");
+const yearInput = document.getElementById("year");
+const priceInput = document.getElementById("price");
+const colorInput = document.getElementById("color");
 
 function createRows(data) {
   let lists = "";
@@ -43,6 +48,50 @@ function createRows(data) {
   tbody.innerHTML += lists;
 }
 
+function validate() {
+  if (!nameInput.value) {
+    nameInput.style.outlineColor = "red";
+    nameInput.focus();
+    return;
+  }
+
+  if (!yearInput.value) {
+    yearInput.style.outlineColor = "red";
+    yearInput.focus();
+    return;
+  }
+
+  if (
+    yearInput.value < 1950 ||
+    yearInput.value > new Date().getFullYear() + 1
+  ) {
+    alert("Yilni to'g'ri kiriting");
+    yearInput.value = "";
+    yearInput.focus();
+    return;
+  }
+
+  if (!colorInput.value) {
+    colorInput.style.outlineColor = "red";
+    colorInput.focus();
+    return;
+  }
+
+  if (!priceInput.value) {
+    priceInput.style.outlineColor = "red";
+    priceInput.focus();
+    return;
+  }
+
+  if (priceInput.value < 100) {
+    alert("Narhni to'g'ri kiriting");
+    priceInput.value = "";
+    priceInput.focus();
+    return;
+  }
+}
+
+// Filter functions
 filter.addEventListener("change", function () {
   let selectedStatus = this.value;
   let cars = data.filter((el) => {
@@ -99,7 +148,7 @@ cars.addEventListener("change", function () {
   }
 });
 
-window.onload = function (params) {
+window.onload = function () {
   if (data.length) {
     createRows(data);
   }
@@ -119,3 +168,10 @@ searchEl.addEventListener("input", function () {
     }
   }
 });
+
+btn &&
+  btn.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    validate();
+  });

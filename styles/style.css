@@ -46,3 +46,21 @@ input {
   margin-bottom: 20px;
   padding: 7px;
 }
+
+.createForm {
+  width: 100%;
+}
+
+.createForm input {
+  width: 47%;
+}
+
+#btn {
+  background-color: blue;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  width: 96%;
+  cursor: pointer;
+  padding: 10px;
+}
