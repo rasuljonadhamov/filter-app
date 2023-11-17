@@ -36,7 +36,7 @@ function createRows(data) {
     }
 
     let tr = `
-               <tr>
+               <tr id='bo-${el.id}'>
                     <td>${id}</td>
                     <td>${name}</td>
                     <td>${year}</td>
@@ -154,6 +154,7 @@ cars.addEventListener("change", function () {
     createRows(data);
   }
 });
+
 document.addEventListener("DOMContentLoaded", function () {
   let data = localStorage.getItem("cars")
     ? JSON.parse(localStorage.getItem("cars"))
@@ -161,6 +162,28 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (data.length) {
     createRows(data);
+  }
+
+  const deleteButtons = document.querySelectorAll("span.delete");
+
+  if (deleteButtons.length) {
+    deleteButtons.forEach((button) => {
+      button.addEventListener("click", function () {
+        const elId = Number(
+          button.parentNode.parentNode.getAttribute("id").substring(3)
+        );
+        const allow = confirm("Rosdan ham ochirmoqchimisz?");
+        if (allow) {
+          let datas = data.filter((car) => {
+            return elId != car.id;
+          });
+          localStorage.setItem("cars", JSON.stringify(datas));
+          createRows(datas);
+
+          console.log(datas);
+        }
+      });
+    });
   }
 });
 
@@ -179,25 +202,28 @@ searchEl.addEventListener("input", function () {
   }
 });
 
-btn &&
-  btn.addEventListener("click", function (e) {
-    e.preventDefault();
+btn.addEventListener("click", function (e) {
+  e.preventDefault();
 
-    validate();
-    let data = [];
+  validate();
 
-    let car = {
-      id: data.length + 1,
-      name: nameInput.value,
-      year: yearInput.value,
-      color: colorInput.value,
-      price: priceInput.value,
-      status: "active",
-    };
+  let data = localStorage.getItem("cars")
+    ? JSON.parse(localStorage.getItem("cars"))
+    : [];
 
-    data.push(car);
+  let car = {
+    id: data.length + 1,
+    name: nameInput.value,
+    year: yearInput.value,
+    color: colorInput.value,
+    price: priceInput.value,
+    status: "active",
+  };
 
-    localStorage.setItem("cars", JSON.stringify(data));
-    formInput.reset();
-    createRows(data);
-  });
+  data.push(car);
+
+  localStorage.setItem("cars", JSON.stringify(data));
+  createRows(data);
+  formInput.reset();
+  window.location.reload();
+});
