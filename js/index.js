@@ -100,6 +100,9 @@ function validate() {
 
 // Filter functions
 filter.addEventListener("change", function () {
+  let data = localStorage.getItem("cars")
+    ? JSON.parse(localStorage.getItem("cars"))
+    : [];
   let selectedStatus = this.value;
   let cars = data.filter((el) => {
     return el.status == selectedStatus;
@@ -108,6 +111,9 @@ filter.addEventListener("change", function () {
 });
 
 colorfilter.addEventListener("change", function () {
+  let data = localStorage.getItem("cars")
+    ? JSON.parse(localStorage.getItem("cars"))
+    : [];
   const colorSelected = this.value;
   let colors = data.filter((el) => {
     return el.color == colorSelected;
@@ -116,6 +122,9 @@ colorfilter.addEventListener("change", function () {
 });
 
 yearfilter.addEventListener("change", function () {
+  let data = localStorage.getItem("cars")
+    ? JSON.parse(localStorage.getItem("cars"))
+    : [];
   let yearSelected = Number(this.value);
   let yearsCarVal = data.filter((el) => {
     if (yearSelected == 2010) {
@@ -130,6 +139,9 @@ yearfilter.addEventListener("change", function () {
 });
 
 pricefilter.addEventListener("change", function () {
+  let data = localStorage.getItem("cars")
+    ? JSON.parse(localStorage.getItem("cars"))
+    : [];
   let priceSelected = Number(this.value);
   let priceCarVal = data.filter((el) => {
     if (priceSelected == 4000) {
@@ -144,6 +156,9 @@ pricefilter.addEventListener("change", function () {
 });
 
 cars.addEventListener("change", function () {
+  let data = localStorage.getItem("cars")
+    ? JSON.parse(localStorage.getItem("cars"))
+    : [];
   let selectedCar = this.value;
   let selectedCars = data.filter((el) => {
     return el.name == selectedCar;
