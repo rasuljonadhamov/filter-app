@@ -1,4 +1,3 @@
-// import { data } from "./data.js";
 const tbody = document.getElementById("tbody");
 const cars = document.getElementById("cars");
 const searchEl = document.getElementById("search");
